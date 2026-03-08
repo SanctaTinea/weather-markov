@@ -31,7 +31,7 @@ def plot_prediction_distribution(
     distribution: dict[str, float], true_label: str | None = None
 ) -> None:
     """Bar chart of the predicted probability distribution"""
-    labels, probs = zip(*sorted(distribution.items()))
+    labels, probs = zip(*sorted(distribution.items(), key=lambda x: float(x[0].split(',')[0][1:])))
     colors = ["red" if l == true_label else "steelblue" for l in labels]
     plt.bar(labels, probs, color=colors)
     plt.ylabel("Probability")
